@@ -3,7 +3,11 @@
 import { useState } from "react";
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar() {
+interface SearchBarProps {
+    onSearch: (location: string) => void;
+}
+
+export default function SearchBar({ onSearch }: SearchBarProps) {
     const [location, setLocation] = useState("");
 
     function handleSearch() {
@@ -11,7 +15,7 @@ export default function SearchBar() {
             console.log("Please enter a location");
             return;
         }
-        console.log("Searching for " + location);
+        onSearch(location);
     }
 
     return(
