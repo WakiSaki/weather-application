@@ -13,10 +13,8 @@ The application is being developed incrementally using an Agile-inspired workflo
 - **Next.js** — React framework
 - **TypeScript** — Static typing
 - **CSS Modules** — Component-scoped styling
-- **Open-Meteo API** — Weather data
 - **Vitest** — Unit testing
 - **React Testing Library** — Component testing
-- **Vercel** — Deployment
 
 ## Features
 
