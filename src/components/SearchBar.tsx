@@ -21,18 +21,24 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     return(
         <div className={styles.container}>
             <label htmlFor="location">What city would you like to see the weather for?</label>
-            <section className={styles.search}>
+            <form 
+                className={styles.search}
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    handleSearch();
+                }}
+            >
                 <input type="text" placeholder="Search for a city..."
                        className={styles.input}
                        value={location} onChange={((event) => setLocation(event.target.value))}
                 />
                 <button
-                    onClick={handleSearch}
+                    type="submit"
                     className={styles.button}
                 >
                     Search
                 </button>
-            </section>
+            </form>
         </div>
     );
 }
