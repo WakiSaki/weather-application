@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./SearchBar.module.css";
 
 interface SearchBarProps {
-    onSearch: (location: string) => void;
+    onSearch: (location: string) => Promise<void>;
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {

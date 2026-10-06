@@ -1,22 +1,47 @@
 "use client"
 
-import Image from "next/image";
 import styles from "./page.module.css";
 import SearchBar from "@/components/SearchBar";
+import WeatherCard from "@/components/WeatherCard";
 import { useState } from "react";
 
 export default function Home() {
-  const [location, setLocation] = useState("");
+  type Weather = {
+    city: string;
+    state: string;
+    temperature: number;
+  }
 
-  function handleSearch(location: string) {
-    setLocation(location);
+  const [weather, setWeather] = useState<Weather | null>(null); // Store weather data from API
+
+  async function handleSearch(location: string) {
+    try {
+      const response = await fetch(`/api/weather?location=${encodeURIComponent(location)}`);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+
+        console.error("API error:", errorData);
+
+        throw new Error(errorData.error || "Failed to fetch weather data");
+      }
+
+      const data = await response.json();
+      setWeather(data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <SearchBar onSearch={ handleSearch }/>
-        <p className={styles.location}>{location}</p>
+        {
+          weather && (
+            <WeatherCard data={weather} />
+          )
+        }
       </main>
     </div>
   );
