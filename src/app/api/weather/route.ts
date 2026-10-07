@@ -41,7 +41,10 @@ export async function GET(request: Request) {
         return NextResponse.json({
             city: data.location.name,
             state: data.location.region,
-            temperature: data.current.temp_f
+            temperatureF: data.current.temp_f,
+            temperatureC: data.current.temp_c,
+            condition: data.current.condition.text,
+            icon: data.current.condition.icon
         });
     } catch(error) {
         console.error(error);

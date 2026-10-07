@@ -1,0 +1,39 @@
+.container {
+    --primary-color: #597481;
+    --secondary-color: #b9d3e7;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 0.5rem;
+    align-self: center;
+    text-align: center;
+    padding: 1rem 5rem;
+    margin: 1rem;
+    width: fit-content;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.current {
+    color: var(--secondary-color);
+    justify-content: center;
+    align-content: center;
+}
+
+.location {
+    font-size: 2rem;
+}
+
+.temperature {
+    font-size: 3rem;
+}
+
+.condition {
+    font-size: 1.5rem;
+}
+
+.icon {
+    align-self: center;
+    justify-self: center;
+    width: auto;
+    height: 100%;
+}

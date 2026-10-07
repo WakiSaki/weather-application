@@ -9,7 +9,10 @@ export default function Home() {
   type Weather = {
     city: string;
     state: string;
-    temperature: number;
+    temperatureF: number;
+    temperatureC: number;
+    condition: string;
+    icon: string;
   }
 
   const [weather, setWeather] = useState<Weather | null>(null); // Store weather data from API
