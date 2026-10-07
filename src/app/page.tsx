@@ -3,19 +3,11 @@
 import styles from "./page.module.css";
 import SearchBar from "@/components/SearchBar";
 import WeatherCard from "@/components/WeatherCard";
+import { WeatherData } from "@/types/weather";
 import { useState } from "react";
 
 export default function Home() {
-  type Weather = {
-    city: string;
-    state: string;
-    temperatureF: number;
-    temperatureC: number;
-    condition: string;
-    icon: string;
-  }
-
-  const [weather, setWeather] = useState<Weather | null>(null); // Store weather data from API
+  const [weather, setWeather] = useState<WeatherData | null>(null); // Store weather data from API
 
   async function handleSearch(location: string) {
     try {

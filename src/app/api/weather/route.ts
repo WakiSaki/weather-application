@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"; // Next.js utility tool to send response back to whoever called the API route
+import { transformWeather } from "@/lib/weather";
 
 // GET endpoint to retrieve weather data based on location
 export async function GET(request: Request) {
@@ -38,14 +39,9 @@ export async function GET(request: Request) {
 
         const data = await response.json();
 
-        return NextResponse.json({
-            city: data.location.name,
-            state: data.location.region,
-            temperatureF: data.current.temp_f,
-            temperatureC: data.current.temp_c,
-            condition: data.current.condition.text,
-            icon: data.current.condition.icon
-        });
+        const weatherData = transformWeather(data);
+
+        return NextResponse.json(weatherData);
     } catch(error) {
         console.error(error);
 
