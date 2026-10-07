@@ -1,6 +1,6 @@
 .container {
-    --primary-color: #597481;
-    --secondary-color: #b9d3e7;
+    --primary-color: #455155;
+    --secondary-color: #A0B8E9;
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0.5rem;
@@ -10,7 +10,9 @@
     margin: 1rem;
     width: fit-content;
     background-color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: 10px;
+    justify-items: center;
+    align-items: center;
 }
 
 .current {
@@ -32,8 +34,6 @@
 }
 
 .icon {
-    align-self: center;
-    justify-self: center;
     width: auto;
     height: 100%;
 }
