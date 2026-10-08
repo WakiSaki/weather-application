@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    padding: 1rem;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+}
+
+.container:hover {
+    background-color: #404040;
+}
+
+.condition {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.temperature {
+    color: #c9c9c9;
+}

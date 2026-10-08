@@ -35,11 +35,13 @@ export default function Home() {
         <SearchBar onSearch={ handleSearch }/>
         {
           weather && (
-            <div>
+            <div className={styles.weather}>
               <WeatherCard data={weather} />
-              <ForecastCard forecast={weather.forecast[1]}/>
-              <ForecastCard forecast={weather.forecast[2]}/>
-              <ForecastCard forecast={weather.forecast[3]}/>
+              <span className={styles.forecast}>
+                <ForecastCard forecast={weather.forecast[1]}/>
+                <ForecastCard forecast={weather.forecast[2]}/>
+                <ForecastCard forecast={weather.forecast[3]}/>
+              </span>
             </div>
           )
         }

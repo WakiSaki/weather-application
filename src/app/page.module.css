@@ -17,10 +17,20 @@
   padding: 120px 60px;
 }
 
-.location {
-  padding: 30px;
-  font-size: x-large;
-  margin: 0 auto;
+.weather {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  place-self: center;
+  background-color: #393d41;
+}
+
+.forecast {
+  display: flex;
+  place-content: center;
+  gap: 0.75rem;
 }
 
 /* Enable hover only on non-touch devices */

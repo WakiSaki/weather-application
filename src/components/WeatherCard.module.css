@@ -1,24 +1,21 @@
 .container {
-    --primary-color: #455155;
+    --primary-color: #27393f;
     --secondary-color: #A0B8E9;
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0.5rem;
     align-self: center;
     text-align: center;
-    padding: 1rem 5rem;
-    margin: 1rem;
+    padding: 1rem 2rem;
     width: fit-content;
     background-color: var(--primary-color);
     border-radius: 10px;
-    justify-items: center;
-    align-items: center;
+    place-items: center;
 }
 
 .current {
     color: var(--secondary-color);
-    justify-content: center;
-    align-content: center;
+    padding: 0.5rem;
 }
 
 .location {
