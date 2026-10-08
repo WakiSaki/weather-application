@@ -41,6 +41,9 @@ export default function Home() {
                 <ForecastCard forecast={weather.forecast[1]}/>
                 <ForecastCard forecast={weather.forecast[2]}/>
                 <ForecastCard forecast={weather.forecast[3]}/>
+                <ForecastCard forecast={weather.forecast[4]}/>
+                <ForecastCard forecast={weather.forecast[5]}/>
+                <ForecastCard forecast={weather.forecast[6]}/>
               </span>
             </div>
           )

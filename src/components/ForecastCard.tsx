@@ -2,9 +2,17 @@ import { ForecastDay } from "@/types/weather";
 import styles from "@/components/ForecastCard.module.css";
 
 export default function ForecastCard({ forecast }: { forecast: ForecastDay }) {
+    const formattedDate = new Date(`${forecast.date}T00:00:00`).toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            day: "numeric",
+        }
+    );
+
     return (
         <div className={styles.container}>
-            <h2>{forecast.date}</h2>
+            <h2>{formattedDate}</h2>
             <img 
                 src={`https://${forecast.icon}`}
             />
