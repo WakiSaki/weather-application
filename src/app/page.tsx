@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import SearchBar from "@/components/SearchBar";
 import WeatherCard from "@/components/WeatherCard";
+import ForecastCard from "@/components/ForecastCard";
 import { WeatherData } from "@/types/weather";
 import { useState } from "react";
 
@@ -34,7 +35,12 @@ export default function Home() {
         <SearchBar onSearch={ handleSearch }/>
         {
           weather && (
-            <WeatherCard data={weather} />
+            <div>
+              <WeatherCard data={weather} />
+              <ForecastCard forecast={weather.forecast[1]}/>
+              <ForecastCard forecast={weather.forecast[2]}/>
+              <ForecastCard forecast={weather.forecast[3]}/>
+            </div>
           )
         }
       </main>

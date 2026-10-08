@@ -27,7 +27,7 @@ export async function GET(request: Request) {
 
     try {
         const response = await fetch(
-            `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(location)}`
+            `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(location)}&days=4`
         );
 
         if(!response.ok) {

@@ -11,6 +11,13 @@ export function transformWeather(data: any): WeatherData {
             temperatureC: data.current.temp_c,
             condition: data.current.condition.text,
             icon: data.current.condition.icon
-        }
+        },
+        forecast: data.forecast.forecastday.map((day: any) => ({
+            date: day.date,
+            highF: day.day.maxtemp_f,
+            lowF: day.day.mintemp_f,
+            condition: day.day.condition.text,
+            icon: day.day.condition.icon
+        }))
     };
 }
