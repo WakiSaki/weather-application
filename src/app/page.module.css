@@ -18,13 +18,14 @@
 }
 
 .weather {
+  --weather-background: #393d41;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
   border-radius: 10px;
   place-self: center;
-  background-color: #393d41;
+  background-color: var(--weather-background);
 }
 
 .forecast {
@@ -38,6 +39,11 @@
   flex-direction: column;
   gap: 0.5rem;
   align-content: stretch;
+}
+
+.hourlyTitle {
+  place-self: center;
+  margin-bottom: 1rem;
 }
 
 /* Enable hover only on non-touch devices */

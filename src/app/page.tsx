@@ -53,6 +53,7 @@ export default function Home() {
                 <ForecastCard forecast={weather.forecast[6]}/>
               </span>
               <div className={styles.hourly}>
+                <h2 className={styles.hourlyTitle}>Hourly Breakdown</h2>
                 {nextSixHours.map((hour) => (
                   <HourlyForecast key={hour.time} hour={hour} />
                 ))}

@@ -4,11 +4,11 @@
     place-items: center;
     padding: 1rem;
     border-radius: 10px;
-    transition-duration: 0.5s;
+    transition: background-color 0.2s ease-out;
 }
 
 .container:hover {
-    background-color: #404040;
+    background-color: color-mix(in srgb, var(--weather-background), white 10%);
 }
 
 .condition {

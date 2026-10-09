@@ -10,6 +10,11 @@
     border-radius: 10px;
     border: solid 2px var(--secondary-color);
     font-size: 1.25rem;
+    transition: background-color 0.2s ease;
+}
+
+.container:hover {
+    background-color: color-mix(in srgb, var(--primary-color), white 10%);
 }
 
 .img {
