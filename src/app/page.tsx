@@ -28,7 +28,13 @@ export default function Home() {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+
+  const currentTime = new Date();
+
+  const nextSixHours = weather?.hourlyForecast
+    .filter((hour) => new Date(hour.time) >= currentTime)
+    .slice(0, 6) ?? [];
 
   return (
     <div className={styles.page}>
@@ -47,7 +53,7 @@ export default function Home() {
                 <ForecastCard forecast={weather.forecast[6]}/>
               </span>
               <div className={styles.hourly}>
-                {weather.hourlyForecast.slice(0, 6).map((hour) => (
+                {nextSixHours.map((hour) => (
                   <HourlyForecast key={hour.time} hour={hour} />
                 ))}
               </div>
