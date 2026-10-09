@@ -57,27 +57,25 @@ export default function Home() {
           <AlertMessage message={error} />
         )}
         <SearchBar onSearch={handleSearch} errorMessage={setError} />
-        {
-          weather && (
-            <div className={styles.weather}>
-              <WeatherCard data={weather} />
-              <span className={styles.forecast}>
-                <ForecastCard forecast={weather.forecast[1]}/>
-                <ForecastCard forecast={weather.forecast[2]}/>
-                <ForecastCard forecast={weather.forecast[3]}/>
-                <ForecastCard forecast={weather.forecast[4]}/>
-                <ForecastCard forecast={weather.forecast[5]}/>
-                <ForecastCard forecast={weather.forecast[6]}/>
-              </span>
-              <div className={styles.hourly}>
-                <h2 className={styles.hourlyTitle}>Hourly Breakdown</h2>
-                {nextSixHours.map((hour) => (
-                  <HourlyForecast key={hour.time} hour={hour} />
-                ))}
-              </div>
+        {weather && (
+          <div className={styles.weather}>
+            <WeatherCard data={weather} />
+            <span className={styles.forecast}>
+              <ForecastCard forecast={weather.forecast[1]}/>
+              <ForecastCard forecast={weather.forecast[2]}/>
+              <ForecastCard forecast={weather.forecast[3]}/>
+              <ForecastCard forecast={weather.forecast[4]}/>
+              <ForecastCard forecast={weather.forecast[5]}/>
+              <ForecastCard forecast={weather.forecast[6]}/>
+            </span>
+            <div className={styles.hourly}>
+              <h2 className={styles.hourlyTitle}>Hourly Breakdown</h2>
+              {nextSixHours.map((hour) => (
+                <HourlyForecast key={hour.time} hour={hour} />
+              ))}
             </div>
-          )
-        }
+          </div>
+        )}
       </main>
     </div>
   );

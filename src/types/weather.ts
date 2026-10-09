@@ -24,6 +24,7 @@ export type WeatherData = {
         temperatureC: number;
         condition: string;
         icon: string;
+        code: number;
     };
     forecast: ForecastDay[];
     hourlyForecast: HourlyForecast[];

@@ -10,7 +10,8 @@ export function transformWeather(data: any): WeatherData {
             temperatureF: data.current.temp_f,
             temperatureC: data.current.temp_c,
             condition: data.current.condition.text,
-            icon: data.current.condition.icon
+            icon: data.current.condition.icon,
+            code: data.current.condition.code
         },
         forecast: data.forecast.forecastday.map((day: any) => ({
             date: day.date,

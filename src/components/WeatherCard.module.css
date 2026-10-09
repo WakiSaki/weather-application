@@ -8,10 +8,11 @@
     text-align: center;
     padding: 1rem 2rem;
     width: fit-content;
-    background-color: var(--primary-color);
     border: solid 2px var(--secondary-color);
     border-radius: 10px;
     place-items: center;
+    background-position: center;
+    background-size: cover;
 }
 
 .current {
@@ -34,4 +35,52 @@
 .icon {
     width: auto;
     height: 100%;
+}
+
+.rainy {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url("/weather/rainy.jpg");
+}
+
+.sunny {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url("/weather/sunny.jpg");
+}
+
+.snow {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url("/weather/snow.jpg");
+}
+
+.cloudy {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url("/weather/cloudy.jpg");
+}
+
+.stormy {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/weather/storm.jpg");
+}
+
+.foggy {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/weather/foggy.jpg");
+}
+
+.wintry {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/weather/wintry.jpg");
+}
+
+.dusty {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("/weather/dusty.jpg");
+}
+
+.default {
+    background-color: var(--primary-color);
 }
