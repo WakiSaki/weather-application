@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import SearchBar from "@/components/SearchBar";
 import WeatherCard from "@/components/WeatherCard";
 import ForecastCard from "@/components/ForecastCard";
+import HourlyForecast from "@/components/HourlyForecast";
 import { WeatherData } from "@/types/weather";
 import { useState } from "react";
 
@@ -45,6 +46,11 @@ export default function Home() {
                 <ForecastCard forecast={weather.forecast[5]}/>
                 <ForecastCard forecast={weather.forecast[6]}/>
               </span>
+              <div className={styles.hourly}>
+                {weather.hourlyForecast.slice(0, 6).map((hour) => (
+                  <HourlyForecast key={hour.time} hour={hour} />
+                ))}
+              </div>
             </div>
           )
         }

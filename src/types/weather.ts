@@ -5,7 +5,14 @@ export type ForecastDay = {
     lowF: number;
     condition: string;
     icon: string;
-}
+};
+
+export type HourlyForecast = {
+    time: string;
+    temperature: number;
+    condition: string;
+    icon: string;
+};
 
 export type WeatherData = {
     location: {
@@ -19,4 +26,5 @@ export type WeatherData = {
         icon: string;
     };
     forecast: ForecastDay[];
-}
+    hourlyForecast: HourlyForecast[];
+};

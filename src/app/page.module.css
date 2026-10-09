@@ -33,6 +33,13 @@
   gap: 0.75rem;
 }
 
+.hourly {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-content: stretch;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {

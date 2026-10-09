@@ -18,6 +18,12 @@ export function transformWeather(data: any): WeatherData {
             lowF: day.day.mintemp_f,
             condition: day.day.condition.text,
             icon: day.day.condition.icon
+        })),
+        hourlyForecast: data.forecast.forecastday[0].hour.map((hour: any) => ({
+            time: hour.time,
+            temperature: hour.temp_f,
+            condition: hour.condition.text,
+            icon: hour.condition.icon
         }))
     };
 }
