@@ -22,11 +22,11 @@ The application is being developed incrementally using an Agile-inspired workflo
 
 - [x] Location search input
 - [x] Store searched location
-- [ ] Connect location search to weather API
-- [ ] Display current weather
-- [ ] Display 7-day forecast
-- [ ] Display weather conditions
-- [ ] Display high and low temperatures
+- [x] Connect location search to weather API
+- [x] Display current weather
+- [x] Display 7-day forecast
+- [x] Display weather conditions
+- [x] Display high and low temperatures
 - [ ] Loading state
 - [ ] Error handling
 - [ ] Responsive design
