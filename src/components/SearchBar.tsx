@@ -5,14 +5,15 @@ import styles from "./SearchBar.module.css";
 
 interface SearchBarProps {
     onSearch: (location: string) => Promise<void>;
+    errorMessage: (message: string) => void;
 }
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
+export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
     const [location, setLocation] = useState("");
 
     function handleSearch() {
-        if(!location){  // Handle empty searches
-            console.log("Please enter a location");
+        if(!location.trim){  // Handle empty searches
+            errorMessage("Please enter a message.")
             return;
         }
         onSearch(location);

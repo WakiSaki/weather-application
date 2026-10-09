@@ -5,28 +5,42 @@ import SearchBar from "@/components/SearchBar";
 import WeatherCard from "@/components/WeatherCard";
 import ForecastCard from "@/components/ForecastCard";
 import HourlyForecast from "@/components/HourlyForecast";
+import AlertMessage from "@/components/AlertMessage";
 import { WeatherData } from "@/types/weather";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [weather, setWeather] = useState<WeatherData | null>(null); // Store weather data from API
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if(!error) return;
+
+    const timer = setTimeout(() => {
+      setError(null);
+    }, 5000)
+
+    return () => clearTimeout(timer);
+  }, [error])
 
   async function handleSearch(location: string) {
+    setError(null);
+    setWeather(null);
+
     try {
       const response = await fetch(`/api/weather?location=${encodeURIComponent(location)}`);
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const errorData = await response.json();
-
-        console.error("API error:", errorData);
-
-        throw new Error(errorData.error || "Failed to fetch weather data");
+        setError(data.error || "Something went wrong");
+        return;
       }
 
-      const data = await response.json();
       setWeather(data);
     } catch (error) {
       console.error(error);
+      setError("Unable to retrieve weather data, please try again.")
     }
   };
 
@@ -39,7 +53,10 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <SearchBar onSearch={ handleSearch }/>
+        {error && (
+          <AlertMessage message={error} />
+        )}
+        <SearchBar onSearch={handleSearch} errorMessage={setError} />
         {
           weather && (
             <div className={styles.weather}>

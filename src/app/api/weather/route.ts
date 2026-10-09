@@ -7,15 +7,14 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const location = searchParams.get("location");
 
-    // Return an error message if there is location
-    if(!location) {
+    // Return an error message if there is no location
+    if(!location || !location.trim) {
         return NextResponse.json(
             { error: "Location is required" },
             { status: 400}
         );
     }
-
-    // Weather API goes here...
+    
     const apiKey = process.env.WEATHER_API_KEY;
 
     if(!apiKey) {
@@ -30,14 +29,20 @@ export async function GET(request: Request) {
             `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${encodeURIComponent(location)}&days=8`
         );
 
+        const data = await response.json();
+
         if(!response.ok) {
+            if(data?.error == 1006) {
+                return NextResponse.json(
+                    { error: "City cannot be found. Please enter a valid city." },
+                    { status: 404 }
+                );
+            }
             return NextResponse.json(
-                { error: "Unable to fetch weather data"},
-                {status: 400}
+                { error: data.error?.message || "Unable to fetch weather data"},
+                {status: response.status}
             );
         }
-
-        const data = await response.json();
 
         const weatherData = transformWeather(data);
 
