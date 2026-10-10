@@ -13,6 +13,7 @@ const mockWeather: WeatherData = {
     temperatureC: 18.3,
     condition: "Sunny",
     icon: "//cdn.weatherapi.com/weather/icon.png",
+    code: 1000,
   },
   forecast: [
     {
@@ -23,6 +24,14 @@ const mockWeather: WeatherData = {
       icon: "//cdn.weatherapi.com/weather/icon.png",
     },
   ],
+  hourlyForecast: [
+    {
+      time: "2026-10-10 00:00",
+      temperature: 54.7,
+      condition: "Clear",
+      icon: "//cdn.weatherapi.com/weather/icon.png"
+    }
+  ]
 };
 
 afterEach(() => {

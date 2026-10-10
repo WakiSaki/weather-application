@@ -9,7 +9,7 @@ afterEach(() => {
 
 describe("SearchBar", () => {
   it("renders the search input and button", () => {
-    render(<SearchBar onSearch={vi.fn()} />);
+    render(<SearchBar onSearch={vi.fn()} errorMessage={vi.fn()}/>);
 
     expect(screen.getByRole("textbox")).toBeInTheDocument();
     expect(
@@ -20,8 +20,9 @@ describe("SearchBar", () => {
   it("calls onSearch with the entered location", async () => {
     const user = userEvent.setup();
     const onSearch = vi.fn();
+    const errorMessage = vi.fn();
 
-    render(<SearchBar onSearch={onSearch} />);
+    render(<SearchBar onSearch={onSearch} errorMessage={errorMessage}/>);
 
     const input = screen.getByRole("textbox");
 
