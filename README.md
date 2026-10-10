@@ -2,7 +2,7 @@
 
 A weather application built with Next.js, TypeScript, and CSS Modules that allows users to search for locations and view current weather conditions and forecasts.
 
-**[View Live Demo](weather-application-pink-ten.vercel.app)**
+**[View Live Demo](https://weather-application-pink-ten.vercel.app)**
 
 ## About
 
