@@ -15,7 +15,11 @@ export default function HourlyForecast({ hour }: { hour: HourlyForecastType }) {
             <p>{formattedTime}</p>
             <p>{hour.temperature}°F</p>
             <p>{hour.condition}</p>
-            <img className={styles.img} src={`http://${hour.icon}`}/>
+            <img 
+                className={styles.img} 
+                src={`http:${hour.icon}`} 
+                alt={hour.condition}
+            />
         </div>
     );
 }
