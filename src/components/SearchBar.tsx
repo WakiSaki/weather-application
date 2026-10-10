@@ -110,12 +110,13 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                 }}
             >
                 <input type="text" placeholder="Search for a city..."
-                       className={styles.input}
-                       value={location} 
-                       onChange={(event) => {
+                    id="location"
+                    className={styles.input}
+                    value={location} 
+                    onChange={(event) => {
                         suppressSuggestions.current = false;
                         setLocation(event.target.value);
-                       }}
+                    }}
                 />
                 {isOpen && suggestions.length > 0 && (
                     <ul className={styles.suggestions}>
