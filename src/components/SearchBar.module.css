@@ -3,12 +3,14 @@
     --button-secondary: #000;
     --button-primary-hover: #14b814;
     --button-secondary-hover: #ffff;
+    --suggestion-color: #686969;
     display: flex;
     flex-direction: column;
     gap: 8px;
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
 }
 
 .search {
@@ -49,4 +51,40 @@
 
 .button:active {
     transform: scale(0.97);
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    margin: 4px 0 0;
+    padding: 0;
+
+    list-style: none;
+
+    background: var(--suggestion-color);
+    border: 2px solid color-mix(in srgb, var(--suggestion-color), black 15%);
+    border-radius: 8px;
+
+    overflow: hidden;
+    z-index: 10;
+}
+
+.suggestions button {
+    display: block;
+    width: 100%;
+
+    padding: 0.75rem 1rem;
+
+    border: none;
+    background: transparent;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.suggestions button:hover {
+    background: color-mix(in srgb, var(--suggestion-color), white 15%);
 }
