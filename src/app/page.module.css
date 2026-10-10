@@ -26,6 +26,16 @@
   border-radius: 10px;
   place-self: center;
   background-color: var(--weather-background);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .forecast {
