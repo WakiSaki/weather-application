@@ -1,17 +1,14 @@
 .container {
-    --primary-color: #454b54;
-    --secondary-color: #9f9e9e;
-
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 
     align-items: center;
     text-align: center;
 
-    background-color: var(--primary-color);
+    background-color: var(--hourly-background);
 
     border-radius: 10px;
-    border: solid 2px var(--secondary-color);
+    border: solid 2px var(--border-color);
 
     font-size: 1.25rem;
 
@@ -19,7 +16,7 @@
 }
 
 .container:hover {
-    background-color: color-mix(in srgb, var(--primary-color), white 10%);
+    background-color: var(--hourly-background-hover)
 }
 
 .condition {

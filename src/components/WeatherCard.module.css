@@ -1,6 +1,4 @@
 .container {
-    --primary-color: #27393f;
-    --secondary-color: #A0B8E9;
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0.5rem;
@@ -8,7 +6,7 @@
     padding: 1rem 2rem;
     margin: 0 auto;
     width: 100%;
-    border: solid 2px var(--secondary-color);
+    border: solid 2px var(--border-color);
     border-radius: 10px;
     place-items: center;
     background-position: center;
@@ -16,7 +14,7 @@
 }
 
 .current {
-    color: var(--secondary-color);
+    color: white;
     padding: 0.5rem;
 }
 
@@ -82,7 +80,7 @@
 }
 
 .default {
-    background-color: var(--primary-color);
+    background-color: var(--current-background);
 }
 
 @media (max-width: 600px) {

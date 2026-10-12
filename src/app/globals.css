@@ -1,13 +1,29 @@
 :root {
-  --background: #ffffff;
+  --background: #d1e1e9;
   --foreground: #171717;
+  --border-color: #40799a;
+
+  --weather-background: #bcd7e9;
+  --weather-background-hover: color-mix(in srgb, var(--weather-background), black 15%);
+
+  --current-background: #acbad4;
+
+  --hourly-background: #80c1ec;
+  --hourly-background-hover: color-mix(in srgb, var(--hourly-background), black 15%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #2c3138;
-    --foreground: #ededed;
-  }
+[data-theme="dark"] {
+  --background: #0b0e1d;
+  --foreground: #ededed;
+  --border-color: #75adb4;
+
+  --weather-background: #272e3c;
+  --weather-background-hover: color-mix(in srgb, var(--weather-background), white 15%);
+
+  --current-background: #21246c;
+
+  --hourly-background: #4f5561;
+  --hourly-background-hover: color-mix(in srgb, var(--hourly-background), white 15%);
 }
 
 html {
@@ -40,10 +56,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

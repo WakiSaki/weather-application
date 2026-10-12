@@ -14,7 +14,7 @@
 }
 
 .container:hover {
-    background-color: color-mix(in srgb, var(--weather-background), white 10%);
+    background-color: var(--weather-background-hover)
 }
 
 .date {
@@ -33,5 +33,5 @@
 }
 
 .temperature {
-    color: #c9c9c9;
+    color: var(--foreground);
 }
