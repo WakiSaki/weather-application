@@ -12,12 +12,12 @@ export default function HourlyForecast({ hour }: { hour: HourlyForecastType }) {
 
     return (
         <div className={styles.container}>
-            <p>{formattedTime}</p>
+            <p className={styles.time}>{formattedTime}</p>
             <p>{hour.temperature}°F</p>
-            <p>{hour.condition}</p>
+            <p className={styles.condition}>{hour.condition}</p>
             <img 
                 className={styles.img} 
-                src={`http:${hour.icon}`} 
+                src={`http:${hour.icon.replace("/64x64/", "/128x128/")}`} 
                 alt={hour.condition}
             />
         </div>

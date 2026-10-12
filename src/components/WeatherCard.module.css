@@ -4,10 +4,10 @@
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0.5rem;
-    align-self: center;
     text-align: center;
     padding: 1rem 2rem;
-    width: fit-content;
+    margin: 0 auto;
+    width: 100%;
     border: solid 2px var(--secondary-color);
     border-radius: 10px;
     place-items: center;
@@ -33,8 +33,8 @@
 }
 
 .icon {
-    width: auto;
-    height: 100%;
+    width: 150px;
+    height: 150px;
 }
 
 .rainy {
@@ -83,4 +83,29 @@
 
 .default {
     background-color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .location {
+        font-size: 1.5rem;
+    }
+
+    .temperature {
+        font-size: 2.5rem;
+    }
+
+    .condition {
+        font-size: 1rem;
+    }
+
+    .icon {
+        width: 150px;
+        height: 150px;
+    }
 }

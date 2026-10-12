@@ -27,7 +27,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
             </section>
             <img 
                 className={styles.icon}
-                src={`https:${data.current.icon}`}
+                src={`https:${data.current.icon.replace("/64x64/", "/128x128/")}`}
             />
         </div>
     )

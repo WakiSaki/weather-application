@@ -1,9 +1,15 @@
 .container {
     display: flex;
     flex-direction: column;
-    place-items: center;
+    align-items: center;
+    flex: 0 0 150px;
+
+    width: 150px;
+
     padding: 1rem;
+
     border-radius: 10px;
+
     transition: background-color 0.2s ease-out;
 }
 
@@ -11,9 +17,19 @@
     background-color: color-mix(in srgb, var(--weather-background), white 10%);
 }
 
+.date {
+    width: 100%;
+    text-align: center;
+}
+
 .condition {
     font-size: 1.25rem;
     font-weight: bold;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
 }
 
 .temperature {

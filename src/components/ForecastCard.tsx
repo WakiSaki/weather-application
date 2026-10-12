@@ -12,9 +12,10 @@ export default function ForecastCard({ forecast }: { forecast: ForecastDay }) {
 
     return (
         <div className={styles.container}>
-            <h2>{formattedDate}</h2>
+            <h2 className={styles.date}>{formattedDate}</h2>
             <img 
-                src={`https://${forecast.icon}`}
+                className={styles.icon}
+                src={`https://${forecast.icon.replace("/64x64/", "/128x128/")}`}
             />
             <p className={styles.condition}>{forecast.condition}</p>
             <p className={styles.temperature}>High: {forecast.highF}°F</p>
