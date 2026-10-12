@@ -108,6 +108,7 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                     event.preventDefault();
                     handleSearch();
                 }}
+                autoComplete="off"
             >
                 <input type="text" placeholder="Search for a city..."
                     id="location"
@@ -117,6 +118,7 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                         suppressSuggestions.current = false;
                         setLocation(event.target.value);
                     }}
+                    autoComplete="off"
                 />
                 {isOpen && suggestions.length > 0 && (
                     <ul className={styles.suggestions}>

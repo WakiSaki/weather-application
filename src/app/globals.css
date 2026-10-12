@@ -8,6 +8,10 @@
 
   --current-background: #acbad4;
 
+  --button-primary: #b3b3b3;
+
+  --suggestion-color: #c0c4c4;
+
   --hourly-background: #80c1ec;
   --hourly-background-hover: color-mix(in srgb, var(--hourly-background), black 15%);
 }
@@ -21,6 +25,10 @@
   --weather-background-hover: color-mix(in srgb, var(--weather-background), white 15%);
 
   --current-background: #21246c;
+
+  --button-primary: #535252;
+
+  --suggestion-color: #686969;
 
   --hourly-background: #4f5561;
   --hourly-background-hover: color-mix(in srgb, var(--hourly-background), white 15%);

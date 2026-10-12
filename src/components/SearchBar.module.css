@@ -1,9 +1,5 @@
 .container {
-    --button-primary: #ccc;
-    --button-secondary: #000;
     --button-primary-hover: #14b814;
-    --button-secondary-hover: #ffff;
-    --suggestion-color: #686969;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -35,18 +31,22 @@
 
 .button {
     padding: 8px 16px;
+
     border: none;
     border-radius: 4px;
+
     cursor: pointer;
+
     font-family: inherit;
+
     background-color: var(--button-primary);
-    color: var(--button-secondary);
+    color: var(--foreground);
+
     transition: background-color 0.5s, color 0.5s;
 }
 
 .button:hover {
     background-color: var(--button-primary-hover);
-    color: var(--button-secondary-hover);
 }
 
 .button:active {
@@ -75,6 +75,8 @@
 .suggestions button {
     display: block;
     width: 100%;
+
+    color: var(--foreground);
 
     padding: 0.75rem 1rem;
 
