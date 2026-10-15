@@ -45,7 +45,8 @@
 
 .forecast {
   display: flex;
-  justify-content: flex-start;
+  /* "safe" falls back to start when the row overflows, so the first card isn't cut off */
+  justify-content: safe center;
   gap: 0.75rem;
 
   padding: 0.5rem;

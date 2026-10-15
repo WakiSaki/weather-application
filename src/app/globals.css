@@ -14,6 +14,9 @@
 
   --hourly-background: #80c1ec;
   --hourly-background-hover: color-mix(in srgb, var(--hourly-background), black 15%);
+
+  --skeleton-base: color-mix(in srgb, var(--weather-background), var(--foreground) 10%);
+  --skeleton-highlight: color-mix(in srgb, var(--weather-background), var(--foreground) 20%);
 }
 
 [data-theme="dark"] {
@@ -32,6 +35,9 @@
 
   --hourly-background: #4f5561;
   --hourly-background-hover: color-mix(in srgb, var(--hourly-background), white 15%);
+
+  --skeleton-base: color-mix(in srgb, var(--weather-background), var(--foreground) 10%);
+  --skeleton-highlight: color-mix(in srgb, var(--weather-background), var(--foreground) 20%);
 }
 
 html {
@@ -64,4 +70,14 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Hidden visually but still read by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     const location = searchParams.get("location");
 
     // Return an error message if there is no location
-    if(!location || !location.trim) {
+    if(!location || !location.trim()) {
         return NextResponse.json(
             { error: "Location is required" },
             { status: 400}

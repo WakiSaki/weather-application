@@ -6,6 +6,7 @@ import WeatherCard from "@/components/WeatherCard";
 import ForecastCard from "@/components/ForecastCard";
 import HourlyForecast from "@/components/HourlyForecast";
 import AlertMessage from "@/components/AlertMessage";
+import WeatherSkeleton from "@/components/WeatherSkeleton";
 import { WeatherData } from "@/types/weather";
 import { useState, useEffect, useRef } from "react";
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [weather, setWeather] = useState<WeatherData | null>(null); // Store weather data from API
   const [error, setError] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Show skeleton while waiting for the API
 
   const requestId = useRef(0);
   const abortController = useRef<AbortController | null>(null);
@@ -30,6 +32,7 @@ export default function Home() {
   async function handleSearch(location: string) {
     setError(null);
     setIsVisible(false);
+    setIsLoading(true);
 
     // Cancel the previous request if it is still running
     abortController.current?.abort();
@@ -56,13 +59,6 @@ export default function Home() {
         return;
       }
 
-      await new Promise((resolve) => setTimeout(resolve, 200));
-
-      // Check again if a new request has been made
-      if(currentRequestId !== requestId.current) {
-        return;
-      }
-
       setWeather(data);
       setIsVisible(true);
     } catch (error) {
@@ -77,6 +73,11 @@ export default function Home() {
 
       console.error(error);
       setError("Unable to retrieve weather data, please try again.")
+    } finally {
+      // Only the latest search can hide the skeleton
+      if (currentRequestId === requestId.current) {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -93,17 +94,20 @@ export default function Home() {
           <AlertMessage message={error} />
         )}
         <SearchBar onSearch={handleSearch} errorMessage={setError} />
-        <div className={`${styles.weather} ${isVisible ? styles.visible : styles.hidden}`}>
-          {weather && (
+        <div
+          className={`${styles.weather} ${isLoading || isVisible ? styles.visible : styles.hidden}`}
+          aria-busy={isLoading}
+        >
+          {isLoading ? (
+            <WeatherSkeleton />
+          ) : weather && (
             <>
               <WeatherCard data={weather} />
               <span className={styles.forecast}>
-                <ForecastCard forecast={weather.forecast[1]}/>
-                <ForecastCard forecast={weather.forecast[2]}/>
-                <ForecastCard forecast={weather.forecast[3]}/>
-                <ForecastCard forecast={weather.forecast[4]}/>
-                <ForecastCard forecast={weather.forecast[5]}/>
-                <ForecastCard forecast={weather.forecast[6]}/>
+                {/* Skip today and show up to 6 upcoming days; the API may return fewer */}
+                {weather.forecast.slice(1, 7).map((day) => (
+                  <ForecastCard key={day.date} forecast={day} />
+                ))}
               </span>
               <div className={styles.hourly}>
                 <h2 className={styles.hourlyTitle}>Hourly Breakdown</h2>
