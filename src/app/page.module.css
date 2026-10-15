@@ -20,6 +20,14 @@
   padding: 120px 60px;
 }
 
+.unitToggleRow {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .weather {
   display: flex;
   flex-direction: column;

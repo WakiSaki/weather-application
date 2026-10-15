@@ -7,6 +7,8 @@ import ForecastCard from "@/components/ForecastCard";
 import HourlyForecast from "@/components/HourlyForecast";
 import AlertMessage from "@/components/AlertMessage";
 import WeatherSkeleton from "@/components/WeatherSkeleton";
+import UnitToggle from "@/components/UnitToggle";
+import { useTemperatureUnit } from "@/hooks/useTemperatureUnit";
 import { WeatherData } from "@/types/weather";
 import { useState, useEffect, useRef } from "react";
 
@@ -15,6 +17,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Show skeleton while waiting for the API
+  const [unit, setUnit] = useTemperatureUnit(); // Saved in localStorage between visits
 
   const requestId = useRef(0);
   const abortController = useRef<AbortController | null>(null);
@@ -93,6 +96,9 @@ export default function Home() {
         {error && (
           <AlertMessage message={error} />
         )}
+        <div className={styles.unitToggleRow}>
+          <UnitToggle unit={unit} onChange={setUnit} />
+        </div>
         <SearchBar onSearch={handleSearch} errorMessage={setError} />
         <div
           className={`${styles.weather} ${isLoading || isVisible ? styles.visible : styles.hidden}`}
@@ -102,17 +108,17 @@ export default function Home() {
             <WeatherSkeleton />
           ) : weather && (
             <>
-              <WeatherCard data={weather} />
+              <WeatherCard data={weather} unit={unit} />
               <span className={styles.forecast}>
                 {/* Skip today and show up to 6 upcoming days; the API may return fewer */}
                 {weather.forecast.slice(1, 7).map((day) => (
-                  <ForecastCard key={day.date} forecast={day} />
+                  <ForecastCard key={day.date} forecast={day} unit={unit} />
                 ))}
               </span>
               <div className={styles.hourly}>
                 <h2 className={styles.hourlyTitle}>Hourly Breakdown</h2>
                 {nextSixHours.map((hour) => (
-                  <HourlyForecast key={hour.time} hour={hour} />
+                  <HourlyForecast key={hour.time} hour={hour} unit={unit} />
                 ))}
               </div>
             </>

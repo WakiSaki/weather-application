@@ -17,6 +17,8 @@ export const mockWeather: WeatherData = {
       date: "2026-10-09",
       highF: 68,
       lowF: 48,
+      highC: 20,
+      lowC: 8.9,
       condition: "Partly cloudy",
       icon: "//cdn.weatherapi.com/weather/icon.png",
     },
@@ -24,7 +26,8 @@ export const mockWeather: WeatherData = {
   hourlyForecast: [
     {
       time: "2026-10-10 00:00",
-      temperature: 54.7,
+      temperatureF: 54.7,
+      temperatureC: 12.6,
       condition: "Clear",
       icon: "//cdn.weatherapi.com/weather/icon.png"
     }

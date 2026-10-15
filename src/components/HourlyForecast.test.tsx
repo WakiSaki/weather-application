@@ -11,31 +11,37 @@ const mockHour = mockWeather.hourlyForecast[0];
 
 describe("HourlyForecast", () => {
     it("renders the formatted time", () => {
-        render(<HourlyForecast hour={mockHour} />);
+        render(<HourlyForecast hour={mockHour} unit="F" />);
 
         expect(screen.getByText("12:00 AM")).toBeInTheDocument();
     });
 
     it("renders the temperature with the Fahrenheit symbol", () => {
-        render(<HourlyForecast hour={mockHour} />);
+        render(<HourlyForecast hour={mockHour} unit="F" />);
 
         expect(screen.getByText("54.7°F")).toBeInTheDocument();
     });
 
+    it("renders the temperature with the Celsius symbol", () => {
+        render(<HourlyForecast hour={mockHour} unit="C" />);
+
+        expect(screen.getByText("12.6°C")).toBeInTheDocument();
+    });
+
     it("renders the weather condition", () => {
-        render(<HourlyForecast hour={mockHour} />);
+        render(<HourlyForecast hour={mockHour} unit="F" />);
 
         expect(screen.getByText("Clear")).toBeInTheDocument();
     });
 
     it("renders the weather icon with the correct source", () => {
-        render(<HourlyForecast hour={mockHour} />);
+        render(<HourlyForecast hour={mockHour} unit="F" />);
 
         const icon = screen.getByRole("img");
 
         expect(icon).toHaveAttribute(
             "src",
-            `http:${mockHour.icon}`
+            `https:${mockHour.icon}`
         );
     });
 });

@@ -1,15 +1,19 @@
+export type TemperatureUnit = "F" | "C";
 
 export type ForecastDay = {
     date: string;
     highF: number;
     lowF: number;
+    highC: number;
+    lowC: number;
     condition: string;
     icon: string;
 };
 
 export type HourlyForecast = {
     time: string;
-    temperature: number;
+    temperatureF: number;
+    temperatureC: number;
     condition: string;
     icon: string;
 };

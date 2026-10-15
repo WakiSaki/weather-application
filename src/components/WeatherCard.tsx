@@ -1,10 +1,10 @@
 "use client"
 
 import styles from "./WeatherCard.module.css";
-import { WeatherData } from "@/types/weather";
+import { TemperatureUnit, WeatherData } from "@/types/weather";
 import { getWeatherBackground } from "@/utils/weatherBackground";
 
-export default function WeatherCard({ data }: { data: WeatherData }) {
+export default function WeatherCard({ data, unit }: { data: WeatherData; unit: TemperatureUnit }) {
     const formattedDate = new Date(`${data.forecast[0].date}T00:00:00`).toLocaleDateString(
         "en-US",
         {
@@ -12,6 +12,8 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
             day: "numeric",
         }
     );
+
+    const temperature = unit === "F" ? data.current.temperatureF : data.current.temperatureC;
 
     const background = getWeatherBackground(data.current.code);
 
@@ -22,7 +24,7 @@ export default function WeatherCard({ data }: { data: WeatherData }) {
             <section className={styles.current}>
                 <p>{formattedDate}</p>
                 <p className={styles.location}>{data.location.city}, {data.location.state}</p>
-                <p className={styles.temperature}>{data.current.temperatureF}°F | {data.current.temperatureC}°C</p>
+                <p className={styles.temperature}>{temperature}°{unit}</p>
                 <p className={styles.condition}>{data.current.condition}</p>
             </section>
             <img 

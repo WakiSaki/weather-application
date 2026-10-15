@@ -18,12 +18,15 @@ export function transformWeather(data: WeatherApiResponse): WeatherData {
             date: day.date,
             highF: day.day.maxtemp_f,
             lowF: day.day.mintemp_f,
+            highC: day.day.maxtemp_c,
+            lowC: day.day.mintemp_c,
             condition: day.day.condition.text,
             icon: day.day.condition.icon
         })),
         hourlyForecast: data.forecast.forecastday[0].hour.map((hour) => ({
             time: hour.time,
-            temperature: hour.temp_f,
+            temperatureF: hour.temp_f,
+            temperatureC: hour.temp_c,
             condition: hour.condition.text,
             icon: hour.condition.icon
         }))

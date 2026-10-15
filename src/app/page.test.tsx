@@ -34,6 +34,7 @@ function deferredFetch() {
 afterEach(() => {
     cleanup();
     vi.unstubAllGlobals();
+    localStorage.clear();
 });
 
 describe("Home loading state", () => {
@@ -94,5 +95,51 @@ describe("Home loading state", () => {
             expect(screen.queryByRole("status")).not.toBeInTheDocument();
         });
         expect(screen.getByText("Location not found")).toBeInTheDocument();
+    });
+});
+
+describe("Home unit toggle", () => {
+    async function renderWithWeather() {
+        const resolve = deferredFetch();
+        render(<Home />);
+
+        await userEvent.click(screen.getByRole("button", { name: "Search" }));
+
+        await act(async () => {
+            resolve({ ok: true, json: async () => weeklyWeather });
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText("Minneapolis, Minnesota")).toBeInTheDocument();
+        });
+    }
+
+    it("shows Fahrenheit by default", async () => {
+        await renderWithWeather();
+
+        expect(screen.getByRole("button", { name: "°F" })).toHaveAttribute("aria-pressed", "true");
+        expect(screen.getByText("65°F")).toBeInTheDocument();
+        expect(screen.getAllByText("High: 68°F").length).toBeGreaterThan(0);
+    });
+
+    it("switches every temperature to Celsius without refetching", async () => {
+        await renderWithWeather();
+
+        await userEvent.click(screen.getByRole("button", { name: "°C" }));
+
+        expect(screen.getByRole("button", { name: "°C" })).toHaveAttribute("aria-pressed", "true");
+        expect(screen.getByText("18.3°C")).toBeInTheDocument();
+        expect(screen.getAllByText("High: 20°C").length).toBeGreaterThan(0);
+        expect(screen.queryByText("65°F")).not.toBeInTheDocument();
+        expect(fetch).toHaveBeenCalledTimes(1);
+    });
+
+    it("remembers the selected unit", async () => {
+        localStorage.setItem("unit", "C");
+
+        await renderWithWeather();
+
+        expect(screen.getByRole("button", { name: "°C" })).toHaveAttribute("aria-pressed", "true");
+        expect(screen.getByText("18.3°C")).toBeInTheDocument();
     });
 });

@@ -9,6 +9,7 @@ export type WeatherApiCondition = {
 export type WeatherApiHour = {
     time: string;
     temp_f: number;
+    temp_c: number;
     condition: WeatherApiCondition;
 };
 
@@ -17,6 +18,8 @@ export type WeatherApiForecastDay = {
     day: {
         maxtemp_f: number;
         mintemp_f: number;
+        maxtemp_c: number;
+        mintemp_c: number;
         condition: WeatherApiCondition;
     };
     hour: WeatherApiHour[];
