@@ -2,7 +2,6 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { describe, expect, it, afterEach, vi } from "vitest";
 import WeatherCard from "./WeatherCard";
 import { mockWeather } from "@/test/mocks/weatherMocks";
-import { getWeatherBackground } from "@/utils/weatherBackground";
 
 afterEach(() => {
     cleanup();

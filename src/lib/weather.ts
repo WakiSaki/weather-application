@@ -1,6 +1,7 @@
 import { WeatherData } from "@/types/weather";
+import { WeatherApiResponse } from "@/types/weatherApi";
 
-export function transformWeather(data: any): WeatherData {
+export function transformWeather(data: WeatherApiResponse): WeatherData {
     return {
         location: {
             city: data.location.name,
@@ -13,14 +14,14 @@ export function transformWeather(data: any): WeatherData {
             icon: data.current.condition.icon,
             code: data.current.condition.code
         },
-        forecast: data.forecast.forecastday.map((day: any) => ({
+        forecast: data.forecast.forecastday.map((day) => ({
             date: day.date,
             highF: day.day.maxtemp_f,
             lowF: day.day.mintemp_f,
             condition: day.day.condition.text,
             icon: day.day.condition.icon
         })),
-        hourlyForecast: data.forecast.forecastday[0].hour.map((hour: any) => ({
+        hourlyForecast: data.forecast.forecastday[0].hour.map((hour) => ({
             time: hour.time,
             temperature: hour.temp_f,
             condition: hour.condition.text,

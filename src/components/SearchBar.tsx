@@ -12,9 +12,7 @@ interface SearchBarProps {
 export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
     const [location, setLocation] = useState("");
     const [suggestions, setSuggestions] = useState<LocationSuggestion[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(-1);
 
     const suggestionSelected = useRef(false);
     const suppressSuggestions = useRef(false);
@@ -25,18 +23,14 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
             return;
         }
 
+        // Short queries are cleared in the input's onChange handler
         if (location.trim().length < 2) {
-            setSuggestions([]);
-            setIsOpen(false);
-            setIsLoading(false);
             return;
         }
 
         const controller = new AbortController();
 
         const timeoutId = setTimeout(async () => {
-            setIsLoading(true);
-
             try {
                 const response = await fetch(
                     `/api/locations?query=${encodeURIComponent(location.trim())}`,
@@ -54,7 +48,6 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                 ) {
                     setSuggestions(data);
                     setIsOpen(data.length > 0);
-                    setActiveIndex(-1);
                 }
             } catch (error) {
                 if (
@@ -67,10 +60,6 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                 if (!controller.signal.aborted) {
                     setSuggestions([]);
                     setIsOpen(false);
-                }
-            } finally {
-                if (!controller.signal.aborted) {
-                    setIsLoading(false);
                 }
             }
         }, 300);
@@ -93,8 +82,6 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
 
         setIsOpen(false);
         setSuggestions([]);
-        setActiveIndex(-1);
-        setIsLoading(false);
 
         await onSearch(trimmedLocation);
     }
@@ -115,8 +102,16 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                     className={styles.input}
                     value={location} 
                     onChange={(event) => {
+                        const value = event.target.value;
+
                         suppressSuggestions.current = false;
-                        setLocation(event.target.value);
+                        setLocation(value);
+
+                        // Clear suggestions here rather than in the effect to avoid an extra render
+                        if (value.trim().length < 2) {
+                            setSuggestions([]);
+                            setIsOpen(false);
+                        }
                     }}
                     autoComplete="off"
                 />
@@ -132,8 +127,6 @@ export default function SearchBar({ onSearch, errorMessage }: SearchBarProps) {
                                         setLocation(`${suggestion.name}, ${suggestion.region}`);
                                         setSuggestions([]);
                                         setIsOpen(false);
-                                        setActiveIndex(-1);
-                                        setIsLoading(false);
 
                                         onSearch(`${suggestion.lat},${suggestion.lon}`);
                                     }}

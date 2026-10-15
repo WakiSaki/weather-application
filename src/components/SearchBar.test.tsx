@@ -1,4 +1,4 @@
-import { render, screen, cleanup, waitFor, act } from "@testing-library/react";
+import { render, screen, cleanup, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi, afterEach, beforeEach } from "vitest";
 import SearchBar from "./SearchBar";
@@ -184,6 +184,39 @@ it("fetches suggestions after the user enters at least two characters", async ()
     expect(fetchMock).not.toHaveBeenCalled();
 
     // No suggestions list should be displayed.
+    expect(
+      screen.queryByRole("list")
+    ).not.toBeInTheDocument();
+  });
+
+  it("clears suggestions when the input is shortened below two characters", async () => {
+    const fetchMock = mockFetchResponse(mockSuggestions);
+    vi.stubGlobal("fetch", fetchMock);
+
+    const user = userEvent.setup();
+
+    render(
+      <SearchBar
+        onSearch={onSearch}
+        errorMessage={errorMessage}
+      />
+    );
+
+    const input = screen.getByPlaceholderText("Search for a city...");
+
+    await user.type(input, "Min");
+
+    // Wait for the suggestions to appear.
+    expect(
+      await screen.findByRole("button", {
+        name: /Minneapolis, Minnesota/,
+      })
+    ).toBeInTheDocument();
+
+    // Delete back down to one character.
+    await user.type(input, "{Backspace}{Backspace}");
+
+    // The suggestions list should be removed.
     expect(
       screen.queryByRole("list")
     ).not.toBeInTheDocument();
